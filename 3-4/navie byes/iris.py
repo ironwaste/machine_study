@@ -37,6 +37,8 @@ def invalue(sheet,nrows) :
 def open_csv():
     path = './iris.csv';
     data = pd.read_csv(path,header=None) # none header
+
+
     return data
 
 data = open_csv()
@@ -47,10 +49,10 @@ x = data.values
 x = x[2:,:-1]
 # 将 其按照特征值标签进行离散化 数字化 方便后续操作
 y = pd.Categorical(data[5]).codes
-y[1:]
+y = y[1:] # 去除 标题头
+
 # 二维数组 ，前为列 ，后为行
 # print(x)
-
 # len(x)
 print(x)
 
@@ -74,10 +76,10 @@ print(list1)
 # irisse=np.sum(t=='Iris-setosa')
 # irisve=np.sum(t=='Iris-versicolor')
 # irisvi=np.sum(t=='Iris-virginica')
-#
+
 # print(t)
 # print(irisse,irisve,irisvi)
-#
+
 # prior_se = irisse/nrows
 # prior_ve = irisve/nrows
 # prior_vi = irisvi/nrows
