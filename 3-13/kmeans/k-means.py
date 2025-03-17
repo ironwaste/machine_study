@@ -94,7 +94,7 @@ if __name__ == '__main__' :
     # print(y_label)
     len = dataTrain.shape[0]
 
-    k = 3
+    k = 2
     alldatainedx =  [ i for i in range(len)]
     mu_index = np.random.choice(alldatainedx,k)
     # 在数组 alldataindex中选择 k个不同的随机数
