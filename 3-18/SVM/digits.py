@@ -22,7 +22,7 @@ def load_data():
     data_X = []
     data_y = []
     digits = load_digits()
-    # print(digits)
+    print(digits)
     data_X.append(digits.data)
     data_y.append(digits.target)
     data_X = np.array(data_X)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
     ansline_x = []
     ansline_y = []
     fig,axs= plt.subplots(1,2)
-    for i in range(1,101100,100) :
+    for i in range(1,1100,100) :
         clf2 = svm.SVC(C=i,kernel='linear',decision_function_shape='ovr').fit(X_train,y_train)
         ansline_x.append(i)
         ansline_y.append(clf2.score(X_test,y_test))
@@ -79,6 +79,6 @@ if __name__ == '__main__':
     plt.legend(loc='upper left')
     plt.show()
 
-    # print("linear 线性核函数-训练集",clf2.score(X_test,y_test))
-    # print("RBF 核函数-训练集",clf1.score(X_test,y_test))
+    print("linear 线性核函数-训练集",clf2.score(X_test,y_test))
+    print("RBF 核函数-训练集",clf1.score(X_test,y_test))
 

@@ -37,7 +37,7 @@ def split_data(data_X,data_y) :
         data_y: 标签向量
     返回：训练集特征、测试集特征、训练集标签、测试集标签
     """
-    X_train,X_test,y_train,y_test = model_selection.train_test_split(data_X,data_y,test_size=0.2,random_state=0)
+    X_train,X_test,y_train,y_test = model_selection.train_test_split(data_X,data_y,test_size=0.215,train_size=0.215,random_state=0)
     for index,item in enumerate(X_train) :
         X_train[index] = list(map(float,item))
     for index, item in enumerate(X_test):
@@ -51,13 +51,17 @@ def split_data(data_X,data_y) :
 if __name__ == '__main__':
     data_X,data_y=load_data()
     # print(data_X)
-    print(data_y)
+    # print(data_y)
 
     X_train,X_test,y_train,y_test = split_data(data_X,data_y)
+    print(X_train.shape)
     ansline_x = []
     ansline_y = []
+    # print(112)
+
     fig,axs= plt.subplots(1,2)
-    for i in range(1,101100,100) :
+    for i in range(700,1100) :
+        # print(i)
         clf2 = svm.SVC(C=i,kernel='linear',decision_function_shape='ovr').fit(X_train,y_train.astype('int'))
         ansline_x.append(i)
         ansline_y.append(clf2.score(X_test,y_test))
@@ -65,17 +69,20 @@ if __name__ == '__main__':
     axs[0].scatter(ansline_x,ansline_y,color='blue')
     ansline_x = []
     ansline_y = []
+    # print(113)
+
     for i in range(20) :
-        gg = random() / 15
+        gg = random() / 23
         clf1 = svm.SVC(C=1,kernel='rbf',gamma=gg,random_state=0).fit(X_train,y_train.astype('int'))
         ansline_x.append(gg)
         ansline_y.append(clf1.score(X_test, y_test))
 
     axs[1].scatter(ansline_x,ansline_y,color='green')
+    # print(112)
     plt.rcParams['font.sans-serif'] = ['SimHei']  # 显示中文标签
     plt.legend(loc='upper left')
     plt.show()
-
-    # print("linear 线性核函数-训练集",clf2.score(X_test,y_test))
-    # print("RBF 核函数-训练集",clf1.score(X_test,y_test))
+    # print(111)
+    print("linear 线性核函数-训练集",clf2.score(X_test,y_test))
+    print("RBF 核函数-训练集",clf1.score(X_test,y_test))
 
