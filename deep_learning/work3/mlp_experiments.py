@@ -21,8 +21,12 @@ class MLP(nn.Module):
         self.num_hiddens = num_hiddens
         self.activation_fn = activation_fn
         
-        # 构建隐藏层
+        # 构建网络层
         layers = []
+        # 添加展平层
+        layers.append(nn.Flatten())
+        
+        # 构建隐藏层
         prev_dim = num_inputs
         for num_hidden in num_hiddens:
             layers.append(nn.Linear(prev_dim, num_hidden))
